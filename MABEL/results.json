@@ -1,0 +1,552 @@
+{
+  "lr14_margin10_test": {
+    "intrasentence": {
+      "gender": {
+        "Count": 2313.0,
+        "LM Score": 79.00382224296517,
+        "SS Score": 59.90853461880449,
+        "ICAT Score": 63.34758008871924
+      }
+    }
+  },
+  "lr24_margin10_test": {
+    "intrasentence": {
+      "gender": {
+        "Count": 2313.0,
+        "LM Score": 72.17044397751546,
+        "SS Score": 54.9820570872295,
+        "ICAT Score": 64.97929853938186
+      }
+    }
+  },
+  "lr24_margin09_test": {
+    "intrasentence": {
+      "race": {
+        "Count": 8928.0,
+        "LM Score": 74.5351989768152,
+        "SS Score": 55.80688526813181,
+        "ICAT Score": 65.87885199890037
+      }
+    }
+  },
+  "lr14_margin09_test": {
+    "intrasentence": {
+      "race": {
+        "Count": 8928.0,
+        "LM Score": 73.54496913764393,
+        "SS Score": 54.89888749908369,
+        "ICAT Score": 66.33919853906593
+      }
+    }
+  },
+  "lr85_margin09_test": {
+    "intrasentence": {
+      "race": {
+        "Count": 8928.0,
+        "LM Score": 77.9210158132474,
+        "SS Score": 56.92830212911544,
+        "ICAT Score": 67.1238090180122
+      }
+    }
+  },
+  "lr45_margin09_test": {
+    "intrasentence": {
+      "race": {
+        "Count": 8928.0,
+        "LM Score": 78.98338525327772,
+        "SS Score": 55.88561104454335,
+        "ICAT Score": 69.68607556163543
+      }
+    }
+  },
+  "lr25_margin09_test": {
+    "intrasentence": {
+      "race": {
+        "Count": 8928.0,
+        "LM Score": 83.38973654524044,
+        "SS Score": 56.85656934432839,
+        "ICAT Score": 71.95438632068611
+      }
+    }
+  },
+  "lr15_margin09_test": {
+    "intrasentence": {
+      "race": {
+        "Count": 8928.0,
+        "LM Score": 83.52351488544764,
+        "SS Score": 56.561928364955406,
+        "ICAT Score": 72.56200845609577
+      }
+    }
+  },
+  "lr86_margin09_test": {
+    "intrasentence": {
+      "race": {
+        "Count": 8928.0,
+        "LM Score": 83.86915994720049,
+        "SS Score": 56.8476483522914,
+        "ICAT Score": 72.38302964879026
+      }
+    }
+  },
+  "lr24_st350_test": {
+    "intrasentence": {
+      "race": {
+        "Count": 8928.0,
+        "LM Score": 72.72820794763841,
+        "SS Score": 51.38155672926619,
+        "ICAT Score": 70.71864504568781
+      }
+    }
+  },
+  "lr24_st633_test": {
+    "intrasentence": {
+      "gender": {
+        "Count": 2313.0,
+        "LM Score": 71.66941803962044,
+        "SS Score": 56.418759884127205,
+        "ICAT Score": 62.46884233099127
+      }
+    }
+  },
+  "lr14_st350_test": {
+    "intrasentence": {
+      "race": {
+        "Count": 8928.0,
+        "LM Score": 76.01072167400292,
+        "SS Score": 54.322415223704155,
+        "ICAT Score": 69.43972366343392
+      }
+    }
+  },
+  "lr14_st633_test": {
+    "intrasentence": {
+      "race": {
+        "Count": 8928.0,
+        "LM Score": 73.82532714823648,
+        "SS Score": 53.16804456870627,
+        "ICAT Score": 69.14768861413779
+      }
+    }
+  },
+  "st350_seed42_test": {
+    "intrasentence": {
+      "race": {
+        "Count": 8928.0,
+        "LM Score": 71.41938948969269,
+        "SS Score": 49.602577950991886,
+        "ICAT Score": 70.85171668749464
+      }
+    }
+  },
+  "st350_seed26_test": {
+    "intrasentence": {
+      "race": {
+        "Count": 8928.0,
+        "LM Score": 70.15538518075998,
+        "SS Score": 44.84742927893498,
+        "ICAT Score": 62.92577350861153
+      }
+    }
+  },
+  "st350_seed15_test": {
+    "intrasentence": {
+      "race": {
+        "Count": 8928.0,
+        "LM Score": 76.50039295648799,
+        "SS Score": 50.26151887265835,
+        "ICAT Score": 76.10026702600996
+      }
+    }
+  },
+  "st350_seed33_test": {
+    "intrasentence": {
+      "race": {
+        "Count": 8928.0,
+        "LM Score": 73.49045590082851,
+        "SS Score": 53.13015228645738,
+        "ICAT Score": 68.88972952941303
+      }
+    }
+  },
+  "st350_seed59_test": {
+    "intrasentence": {
+      "race": {
+        "Count": 8928.0,
+        "LM Score": 68.48909996627866,
+        "SS Score": 52.79932503858131,
+        "ICAT Score": 64.65463491816861
+      }
+    }
+  },
+  "st350_seed67_test": {
+    "intrasentence": {
+      "race": {
+        "Count": 8928.0,
+        "LM Score": 68.56261271444895,
+        "SS Score": 43.46016540589986,
+        "ICAT Score": 59.59484978461208
+      }
+    }
+  },
+  "st350_seed83_test": {
+    "intrasentence": {
+      "race": {
+        "Count": 8928.0,
+        "LM Score": 72.48214905266497,
+        "SS Score": 52.18257921231556,
+        "ICAT Score": 69.31818841693888
+      }
+    }
+  },
+  "st350_seed97_test": {
+    "intrasentence": {
+      "race": {
+        "Count": 8928.0,
+        "LM Score": 73.68408909938093,
+        "SS Score": 50.660104804134484,
+        "ICAT Score": 72.71130467532544
+      }
+    }
+  },
+  "lr14_seed33_test": {
+    "intrasentence": {
+      "race": {
+        "Count": 8928.0,
+        "LM Score": 75.50824127820351,
+        "SS Score": 53.05078319608572,
+        "ICAT Score": 70.90105580505293
+      }
+    }
+  },
+  "lr85_seed33_test": {
+    "intrasentence": {
+      "race": {
+        "Count": 8928.0,
+        "LM Score": 77.31836878884164,
+        "SS Score": 56.12492648404788,
+        "ICAT Score": 67.84698229487849
+      }
+    }
+  },
+  "lr45_seed33_test": {
+    "intrasentence": {
+      "race": {
+        "Count": 8928.0,
+        "LM Score": 79.80829724009654,
+        "SS Score": 57.41053983232673,
+        "ICAT Score": 67.9798459271384
+      }
+    }
+  },
+  "lr25_seed33_test": {
+    "intrasentence": {
+      "race": {
+        "Count": 8928.0,
+        "LM Score": 82.57786318011972,
+        "SS Score": 55.1793065335071,
+        "ICAT Score": 74.02394185428273
+      }
+    }
+  },
+  "lr15_seed33_test": {
+    "intrasentence": {
+      "gender": {
+        "Count": 2313.0,
+        "LM Score": 84.80990203320289,
+        "SS Score": 62.08010026140961,
+        "ICAT Score": 64.31965963877454
+      }
+    }
+  },
+  "lr14_st422_test": {
+    "intrasentence": {
+      "race": {
+        "Count": 8928.0,
+        "LM Score": 72.35068773285052,
+        "SS Score": 52.88626020776895,
+        "ICAT Score": 68.17422951268965
+      }
+    }
+  },
+  "lr14_seed67_test": {
+    "intrasentence": {
+      "race": {
+        "Count": 8928.0,
+        "LM Score": 73.68764713465691,
+        "SS Score": 54.63416593606673,
+        "ICAT Score": 66.85803144945027
+      }
+    }
+  },
+  "lr85_seed67_test": {
+    "intrasentence": {
+      "race": {
+        "Count": 8928.0,
+        "LM Score": 76.5211032787289,
+        "SS Score": 53.30756402813594,
+        "ICAT Score": 71.45913430676892
+      }
+    }
+  },
+  "lr45_seed67_test": {
+    "intrasentence": {
+      "race": {
+        "Count": 8928.0,
+        "LM Score": 80.35221506236562,
+        "SS Score": 52.987757618036824,
+        "ICAT Score": 75.5507562087913
+      }
+    }
+  },
+  "lr25_seed67_test": {
+    "intrasentence": {
+      "gender": {
+        "Count": 2313.0,
+        "LM Score": 82.38684669995266,
+        "SS Score": 61.083492789439816,
+        "ICAT Score": 64.12416627308049
+      }
+    }
+  },
+  "lr15_seed67_test": {
+    "intrasentence": {
+      "race": {
+        "Count": 8928.0,
+        "LM Score": 82.26199326380966,
+        "SS Score": 56.57394560947801,
+        "ICAT Score": 71.44627587493903
+      }
+    }
+  },
+  "lr24_st422_test": {
+    "intrasentence": {
+      "race": {
+        "Count": 8928.0,
+        "LM Score": 76.44828302101882,
+        "SS Score": 51.02054471313911,
+        "ICAT Score": 74.88790519970556
+      }
+    }
+  },
+  "lr24_seed277_test": {
+    "intrasentence": {
+      "race": {
+        "Count": 8928.0,
+        "LM Score": 74.88823762619516,
+        "SS Score": 51.02808980376634,
+        "ICAT Score": 73.34840095568472
+      }
+    }
+  },
+  "lr24_seed513_test": {
+    "intrasentence": {
+      "race": {
+        "Count": 8928.0,
+        "LM Score": 63.401101244048235,
+        "SS Score": 54.78015683889231,
+        "ICAT Score": 57.33975708994742
+      }
+    }
+  },
+  "lr24_seed23_test": {
+    "intrasentence": {
+      "race": {
+        "Count": 8928.0,
+        "LM Score": 72.63332901639208,
+        "SS Score": 52.567183464421895,
+        "ICAT Score": 68.90406739205615
+      }
+    }
+  },
+  "lr24_seed14_test": {
+    "intrasentence": {
+      "race": {
+        "Count": 8928.0,
+        "LM Score": 75.17747710164983,
+        "SS Score": 52.851432423230385,
+        "ICAT Score": 70.89020718756375
+      }
+    }
+  },
+  "lr24_seed744_test": {
+    "intrasentence": {
+      "race": {
+        "Count": 8928.0,
+        "LM Score": 65.90812984553668,
+        "SS Score": 53.09035810945269,
+        "ICAT Score": 61.834535374596385
+      }
+    }
+  },
+  "lr24_seed6_test": {
+    "intrasentence": {
+      "race": {
+        "Count": 8928.0,
+        "LM Score": 72.46947404241976,
+        "SS Score": 53.56289877504913,
+        "ICAT Score": 67.30544603653593
+      }
+    }
+  },
+  "lr24_seed887_test": {
+    "intrasentence": {
+      "race": {
+        "Count": 8928.0,
+        "LM Score": 70.4784675104078,
+        "SS Score": 52.38690364713166,
+        "ICAT Score": 67.11396128751095
+      }
+    }
+  },
+  "lr24_seed13024_test": {
+    "intrasentence": {
+      "gender": {
+        "Count": 2313.0,
+        "LM Score": 74.85496197816288,
+        "SS Score": 50.652111171076676,
+        "ICAT Score": 73.87868683983328
+      }
+    }
+  },
+  "lr24_seed4362_test": {
+    "intrasentence": {
+      "race": {
+        "Count": 8928.0,
+        "LM Score": 73.98108871690587,
+        "SS Score": 51.057655812705995,
+        "ICAT Score": 72.41615814667081
+      }
+    }
+  },
+  "lr24_seed514_test": {
+    "intrasentence": {
+      "gender": {
+        "Count": 2313.0,
+        "LM Score": 70.20865639256445,
+        "SS Score": 52.852683083292774,
+        "ICAT Score": 66.20299546472877
+      }
+    }
+  },
+  "lr24_seed17457_test": {
+    "intrasentence": {
+      "race": {
+        "Count": 8928.0,
+        "LM Score": 75.67946546836092,
+        "SS Score": 51.61892313095223,
+        "ICAT Score": 73.22908072466431
+      }
+    }
+  },
+  "lr24_seed9147_test": {
+    "intrasentence": {
+      "gender": {
+        "Count": 2313.0,
+        "LM Score": 69.51943559106228,
+        "SS Score": 50.42131542361427,
+        "ICAT Score": 68.93364338195282
+      }
+    }
+  },
+  "lr24_seed21295_test": {
+    "intrasentence": {
+      "race": {
+        "Count": 8928.0,
+        "LM Score": 65.27177547417075,
+        "SS Score": 47.45797280843874,
+        "ICAT Score": 61.953322912234285
+      }
+    }
+  },
+  "lr24_seed8624_test": {
+    "intrasentence": {
+      "gender": {
+        "Count": 2313.0,
+        "LM Score": 74.45475121663277,
+        "SS Score": 52.17053670689352,
+        "ICAT Score": 71.22261580626625
+      }
+    }
+  },
+  "lr24_seed18244_test": {
+    "intrasentence": {
+      "race": {
+        "Count": 8928.0,
+        "LM Score": 68.59927897528341,
+        "SS Score": 44.39799404893107,
+        "ICAT Score": 60.913407594111895
+      }
+    }
+  },
+  "lr24_seed7523_test": {
+    "intrasentence": {
+      "gender": {
+        "Count": 2313.0,
+        "LM Score": 70.58992653837731,
+        "SS Score": 51.36765250685791,
+        "ICAT Score": 68.65907673859476
+      }
+    }
+  },
+  "new_seed13024_test": {
+    "intrasentence": {
+      "gender": {
+        "Count": 2313.0,
+        "LM Score": 70.73032696614655,
+        "SS Score": 46.612172871643125,
+        "ICAT Score": 65.93788455627728
+      }
+    }
+  },
+  "a_seed13024_test": {
+    "intrasentence": {
+      "gender": {
+        "Count": 2313.0,
+        "LM Score": 79.62369882186223,
+        "SS Score": 53.970954495742106,
+        "ICAT Score": 73.30005712577645
+      }
+    }
+  },
+  "b_seed13024_test": {
+    "intrasentence": {
+      "gender": {
+        "Count": 2313.0,
+        "LM Score": 79.62369882186223,
+        "SS Score": 53.970954495742106,
+        "ICAT Score": 73.30005712577645
+      }
+    }
+  },
+  "b_seed13042_test": {
+    "intrasentence": {
+      "gender": {
+        "Count": 2313.0,
+        "LM Score": 75.00834862196682,
+        "SS Score": 54.94234564831765,
+        "ICAT Score": 67.59400491398141
+      }
+    }
+  },
+  "lr24_seed30670_test": {
+    "intrasentence": {
+      "gender": {
+        "Count": 2313.0,
+        "LM Score": 69.07832637359124,
+        "SS Score": 48.63317974712277,
+        "ICAT Score": 67.18997326314548
+      }
+    }
+  },
+  "lr24_seed13204_test": {
+    "intrasentence": {
+      "gender": {
+        "Count": 2313.0,
+        "LM Score": 74.85496197816288,
+        "SS Score": 50.652111171076676,
+        "ICAT Score": 73.87868683983328
+      }
+    }
+  }
+}
