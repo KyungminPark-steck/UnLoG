@@ -14,9 +14,9 @@ from torch.nn import CrossEntropyLoss
 train_fct = CrossEntropyLoss(ignore_index = -100)
 val_fct = CrossEntropyLoss(reduction='none')
     
-class SimCSEPretraining(nn.Module):
+class UnLoGPretraining(nn.Module):
     def __init__(self, model_name, use_cl_loss=True, from_scratch=False):
-        super(SimCSEPretraining, self).__init__()
+        super(UnLoGPretraining, self).__init__()
         from transformers import AutoTokenizer, GPT2LMHeadModel
         from transformers import RobertaForMaskedLM
         from transformers import AutoTokenizer, BertForMaskedLM, BertConfig
