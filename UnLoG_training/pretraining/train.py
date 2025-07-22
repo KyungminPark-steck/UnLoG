@@ -146,9 +146,9 @@ if __name__ == '__main__':
         use_mlm_loss = True
     else:
         use_mlm_loss = False
-    from simcse import SimCSEPretraining
+    from unlog import UnLoGPretraining
     ######## model load class (simcse.py) ######### 0417 model 에 use_mlm_loss 인자 추가.
-    model = SimCSEPretraining(model_name, use_cl_loss, use_mlm_loss, from_scratch)
+    model = UnLoGPretraining(model_name, use_cl_loss, use_mlm_loss, from_scratch)
     if cuda_available:
         if multi_gpu_training:
             model = nn.DataParallel(model) # multi-gpu training
