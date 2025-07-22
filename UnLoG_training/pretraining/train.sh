@@ -1,4 +1,4 @@
-CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 python /content/drive/MyDrive/Bias_contrastive_learning/SimCTG/pretraining/train.py\
+CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 python /content/drive/MyDrive/UnLoG/UnLoG_training/pretraining/train.py\
     --model_name bert-large-uncased\
     --train_path /content/drive/MyDrive/Bias_contrastive_learning/data/clean.csv\
     --dev_path /content/drive/MyDrive/Bias_contrastive_learning/data/wikitext103_raw_v1_validation.txt\
@@ -12,6 +12,6 @@ CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 python /content/drive/MyDrive/Bias_contrast
     --save_every 350\
     --learning_rate 2e-4\
     --margin 0.9\
-    --save_path_prefix /content/drive/MyDrive/outputs/lr24_seed13204_test
+    --save_path_prefix /content/drive/MyDrive/outputs/want_path
   
 
