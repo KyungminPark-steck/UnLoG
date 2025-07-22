@@ -133,9 +133,9 @@ if __name__ == '__main__':
         from_scratch = True
     else:
         from_scratch = False
-    from simcse import SimCSEPretraining
-    ######## model load class (simcse.py)
-    model = SimCSEPretraining(model_name, use_cl_loss, from_scratch)
+    from unlog import UnLoGPretraining
+    ######## model load class (unlog.py)
+    model = UnLoGPretraining(model_name, use_cl_loss, from_scratch)
     if cuda_available:
         if multi_gpu_training:
             model = nn.DataParallel(model) # multi-gpu training
