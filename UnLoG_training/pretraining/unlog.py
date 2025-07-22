@@ -82,7 +82,7 @@ class UnLoGPretraining(nn.Module):
         return mlm_loss
 
     # VERSION 1
-    def compute_simcse_loss(self, pooling, pooling_plus, pooling_minus, temp):
+    def compute_contrastive_loss(self, pooling, pooling_plus, pooling_minus, temp):
         bsz, hidden_size = pooling.size()
         temp = 5 # 
         cosine_sim_plus = F.cosine_similarity(pooling, pooling_plus, dim=1)
@@ -123,7 +123,7 @@ class UnLoGPretraining(nn.Module):
         pooling_minus = self.get_pooled_output(outputs_plus)
         assert pooling.size() == torch.Size([bsz, self.embed_dim])
         if self.use_cl_loss:
-            cl_loss = self.compute_simcse_loss(pooling, pooling_plus, pooling_minus, temp)
+            cl_loss = self.compute_contrastive_loss(pooling, pooling_plus, pooling_minus, temp)
         else:
             cl_loss = torch.Tensor([0.])
             if input_ids.is_cuda:
