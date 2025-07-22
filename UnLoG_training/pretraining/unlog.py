@@ -15,26 +15,25 @@ from transformers import ElectraForMaskedLM
 train_fct = CrossEntropyLoss(ignore_index = -100)
 val_fct = CrossEntropyLoss(reduction='none')
     
-class SimCSEPretraining(nn.Module):
-    ####### 0417 use_mlm_loss 인자 추가. 
+class UnLoGPretraining(nn.Module):
     def __init__(self, model_name, use_cl_loss=True, use_mlm_loss=True, from_scratch=False):
-        super(SimCSEPretraining, self).__init__()
+        super(UnLoGPretraining, self).__init__()
         from transformers import AutoTokenizer, GPT2LMHeadModel
         from transformers import RobertaForMaskedLM, ElectraForMaskedLM
         from transformers import AutoTokenizer, BertForMaskedLM, BertConfig
         from transformers import AutoModelForMaskedLM
-        ######################### 모델 바꾼 다음 이 부분 수정 필요
+
         self.tokenizer = AutoTokenizer.from_pretrained(model_name)
         self.vocab_size = len(self.tokenizer)        
         if from_scratch: # randomly initialize model
             print ('Pre-training the model from scratch.')
             from transformers import AutoConfig
-            # GPT, Roberta 사용할 땐 이것
+            # GPT, Roberta 
             config = AutoConfig.from_pretrained(model_name)
             #self.model = GPT2LMHeadModel(config)
             #self.model = RobertaForMaskedLM(config)
 
-            # Bert 사용할 땐 이것
+            # Bert 
             #config = BertConfig.from_pretrained(model_name)
             #self.model = BertForMaskedLM(config)
         else:
@@ -48,9 +47,8 @@ class SimCSEPretraining(nn.Module):
         self.embed_dim = self.model.config.hidden_size
         self.logsftmax = nn.LogSoftmax(dim=-1)
         self.use_cl_loss = use_cl_loss
-        #### 0417 use_mlm_loss 인자 추가. 
         self.use_mlm_loss = use_mlm_loss
-        # pooler output을 구하기 위한 추가 구현
+        # pooler output
         self.dense = nn.Linear(self.embed_dim, self.embed_dim) # self.embed_dim =  hidden_size
         self.activation = nn.Tanh() 
         
@@ -63,7 +61,7 @@ class SimCSEPretraining(nn.Module):
         logits = outputs.logits
         return last_hidden_states, logits
     
-    # pooled_output을 구하기 위한 추가 구현
+    # pooled_output
     def get_pooled_output(self, output):
         # output=self.model(input_ids=input_ids, output_hiddens_states=True)
         last_hidden_states = output.hidden_states[-1] #(bsz, sequence, hidden_size)
@@ -71,30 +69,22 @@ class SimCSEPretraining(nn.Module):
         pooled_output = self.dense(cls_representation)
         pooled_output = self.activation(pooled_output)
         return pooled_output # [bsz, hidden_size]       
-
-    # def compute_mlm_loss(self, input_ids, labels): # 기존 mle loss 식이 mlm loss 구하는 방식이라 같아서?
-    #     bsz, seqlen = input_ids.size()
-    #     logits = self.model(input_ids=input_ids, output_hidden_states=True).logits #hidden size => voca size
-    #     assert logits.size() == torch.Size([bsz, seqlen, self.vocab_size])
-    #     mlm_loss = train_fct(logits.view(-1, self.vocab_size), labels.view(-1))
-    #     return mlm_loss
-    
-    # mlm 으로 수정 버전. -> 형식상? 
+        
     def compute_mlm_loss(self, input_ids, labels, attention_mask=None):
         bsz, seqlen = input_ids.size()
         outputs = self.model(input_ids=input_ids, attention_mask=attention_mask, output_hidden_states=True)
         logits = outputs.logits
         assert logits.size() == torch.Size([bsz, seqlen, self.vocab_size])
         
-        # 사용자 정의 손실 함수 사용
+        #
         mlm_loss = train_fct(logits.view(-1, self.vocab_size), labels.view(-1), ignore_index=-100)
         
         return mlm_loss
 
-    # 버전 1
+    # VERSION 1
     def compute_simcse_loss(self, pooling, pooling_plus, pooling_minus, temp):
         bsz, hidden_size = pooling.size()
-        temp = 5 # 하이퍼파라미터 temperature
+        temp = 5 # 
         cosine_sim_plus = F.cosine_similarity(pooling, pooling_plus, dim=1)
         cosine_sim_minus = F.cosine_similarity(pooling, pooling_minus, dim=1)
         num = torch.exp(cosine_sim_plus/temp) 
@@ -103,55 +93,21 @@ class SimCSEPretraining(nn.Module):
         cl_loss = torch.mean(loss)
         return cl_loss
 
-    #     # 버전 1
-    # def compute_simcse_loss(self, pooling, pooling_plus, pooling_minus, temp):
-    #     bsz, hidden_size = pooling.size()
-    #     temp = 0.05 # 하이퍼파라미터 temperature
-    #     cosine_sim_plus = F.cosine_similarity(pooling, pooling_plus, dim=1)
-    #     cosine_sim_minusA = F.cosine_similarity(pooling, pooling_minus, dim=1)
-    #     cosine_sim_minusB = F.cosine_similarity(pooling_plus, pooling_minus, dim=1)
-    #     num = torch.exp(cosine_sim_minusA/temp) 
-    #     denum = torch.exp(cosine_sim_plus/temp) + torch.exp(cosine_sim_minusA/temp) 
-    #     # denum = torch.exp(cosine_sim_minus/temp)
-    #     loss = -torch.log(num / denum)
-    #     cl_loss = torch.mean(loss)
-    #     return cl_loss
-    '''
-    # 버전 2(anchor 멀어지는 쪽은 negative 전체 문장들만 멀어지도록 수정하기)
-    def hard_negative(self, pooling, pooling_plus, pooling_minus, temp):
-        bsz, hidden_size = input_ids.size()
-        num = torch.exp(F.cosine_similarity(pooling, pooing_plus, dim=1)/temp) # anchor와 positive 쌍은 가깝게
-        denom = torch.empty_like(num)
-        # 나머지 다른 문장들은 다 멀도록
-        for i in range(bsz):
-            a = 0
-            for j in range(bsz):
-                a += torch.exp(F.consine_similarity(pooling[i, :], pooling_plus[j, :], dim=0)/temp) # anchor A와 positive 전체 문장들이 멀어지게
-                a += torch.exp(F.consine_similarity(pooling[i, :], pooling_plus[j, :], dim=0)/temp) # anchor A와 negative 전체 문장들이 멀어지게
-            denom[i] = a
-        loss = -torch.log(num/denom)
-        cl_loss = torch.mean(loss)
-        return cl_loss
-    '''
     def forward(self, input_ids, input_ids_plus, input_ids_minus, labels, attention_mask=None):
         bsz, seqlen = input_ids.size()
-        temp = 5 # 하이퍼파라미터 -> 조절하고 싶으면 위에서 compute_simcse_loss 함수에서 하면 됨. 
+        temp = 5 
         #print(temp)
         outputs = self.model(input_ids=input_ids, output_hidden_states=True)
         # plus hidden, minus hidden
         outputs_plus = self.model(input_ids=input_ids_plus, output_hidden_states=True)
         outputs_minus = self.model(input_ids=input_ids_minus, output_hidden_states=True)
-        ########### mlm을 위한 추가 -> 만약 mlm 적용을 바꾸고 싶으면 여기와, dataclass 에서 label 도 바꿔야. 
-        #outputs_mlm = self.model(input_ids=input_ids, attention_mask=attention_mask, output_hidden_states=True)
         # mlm loss
         logits = outputs.logits
         logits_plus = outputs_plus.logits
         logits_minus = outputs_minus.logits
-        ########### 추가 
-        #logits_for_mlm = outputs_mlm.logits
+
         assert logits.size() == torch.Size([bsz, seqlen, self.vocab_size])
-        ########### logit_plus 를 logits_for_mlm 으로 수정
-        ########### 0417 이 부분 mlm loss 추가 수정. 이 파일에서 나머진 동일.
+
         import pdb
         if self.use_mlm_loss:
             mlm_loss = train_fct(logits.view(-1, self.vocab_size), labels.view(-1))
@@ -161,7 +117,7 @@ class SimCSEPretraining(nn.Module):
             if logits.is_cuda:
                 mlm_loss = mlm_loss.cuda(logits.get_device())
 
-        # cl loss -> 조합 수정을 위한.
+        # cl loss combination
         pooling = self.get_pooled_output(outputs) # anchor
         pooling_plus = self.get_pooled_output(outputs_minus)
         pooling_minus = self.get_pooled_output(outputs_plus)
