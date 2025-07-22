@@ -123,7 +123,7 @@ if __name__ == '__main__':
     from transformers import AutoTokenizer
     tokenizer = AutoTokenizer.from_pretrained(model_name)
     print("tokenizer loaded")
-    ######## data 만드는 class (dataclass.py)
+    
     data = EnglishPretrainCorpus(args.train_path, args.dev_path, tokenizer, batch_size_per_gpu, number_of_gpu, args.seqlen)
     print ('Dataset loaded.')
     #print("CL coeff:", args.cl_coeff)
@@ -147,7 +147,7 @@ if __name__ == '__main__':
     else:
         use_mlm_loss = False
     from unlog import UnLoGPretraining
-    ######## model load class (simcse.py) ######### 0417 model 에 use_mlm_loss 인자 추가.
+    ######## model load class (unlog.py) ######### 
     model = UnLoGPretraining(model_name, use_cl_loss, use_mlm_loss, from_scratch)
     if cuda_available:
         if multi_gpu_training:
@@ -160,10 +160,10 @@ if __name__ == '__main__':
     print ('Model loaded') 
 
     total_steps, print_every, save_every = args.total_steps, args.print_every, args.save_every
-    ################ warmup_steps 조절 ################
+    ################ warmup_steps ################
     warmup_steps = int(0.1 * total_steps) # 10% of training steps are used for warmup
     print ('total training steps is {}, warmup steps is {}'.format(total_steps, warmup_steps))
-    ###############  temp 조절 ##################
+    ###############  temp ##################
     #temp = args.temp 
     #print("set temp is:", temp)
     from transformers.optimization import AdamW, get_linear_schedule_with_warmup
@@ -229,7 +229,7 @@ if __name__ == '__main__':
                     one_train_loss, one_train_cl_loss))
                 print_valid = False
     '''
-    #################################################### 수정한 부분 (시작) #######################################
+    
     print('--------------------------------------------------------------------------')
     print('Start Pre-training:')
     model.train()
@@ -265,17 +265,16 @@ if __name__ == '__main__':
                 train_cl_loss += 0.
             torch.nn.utils.clip_grad_norm_(model.parameters(), args.max_grad_norm)
             '''
-            ############ 0417 추가 부분. 
+    
             mle_loss, cl_loss = model(input_ids, input_ids_plus, input_ids_minus, labels)
             #print('end loss calculation')
-
-            # 계수 추가 부분. 
+ 
             # mlm_coeff = args.mlm_coeff
             # cl_coeff = args.cl_coeff
             # mle_loss = mlm_coeff * mle_loss
             # cl_loss = cl_coeff * cl_loss
 
-            # use_mlm_loss가 True일 경우에만 mle_loss를 손실 계산에 포함
+            # 
             if not use_mlm_loss:
                 mle_loss = torch.Tensor([0.])
                 if input_ids.is_cuda:
@@ -289,7 +288,7 @@ if __name__ == '__main__':
             loss = loss.mean()
             loss.backward()
 
-            # mle_loss가 계산될 때만 평균값을 더해 train_loss에 추가
+            #
             if use_mlm_loss:
                 train_loss += mle_loss.mean().item()
             else:
@@ -302,8 +301,6 @@ if __name__ == '__main__':
                 train_cl_loss += 0.
 
             torch.nn.utils.clip_grad_norm_(model.parameters(), args.max_grad_norm)
-            ########## 0417 추가 부분 끝.
-
 
             # parameter update
             if all_batch_step % gradient_accumulation_steps == 0:
@@ -322,7 +319,7 @@ if __name__ == '__main__':
                                                                                                 one_train_loss,
                                                                                                 one_train_cl_loss))
                 print_valid = False
-            ################################# 수정한 부분 (끝) ################################
+
             # saving result
             if effective_batch_acm % save_every == 0 and save_valid:
                 number_of_saves += 1
